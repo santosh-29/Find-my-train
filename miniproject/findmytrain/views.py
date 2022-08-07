@@ -68,10 +68,10 @@ def findtrainsrcdestresult(request):
     source = request.POST.get("sourcestation")
     destination = request.POST.get("destinationstation")
     result = subprocess.Popen(
-        ['php', 'C://Users//DELL//Desktop//jupyter-tbp//trainbetweensrcdestcall.php', source, destination],
+        ['php', 'findmytrain//static//php-files//trainbetweensrcdestcall.php', source, destination],
         stdout=subprocess.PIPE, universal_newlines=False, stderr=subprocess.STDOUT)
-    print("result : ", result.stdout)
-    type(result.stdout)
+    # print("result : ", result.stdout)
+    # type(result.stdout)
     for line in result.stdout:
         res = line
         break
@@ -107,7 +107,7 @@ def livestation(request):
 def livestationresult(request):
     train_no = request.POST.get("trainID")
     date = request.POST.get("trainDate")
-    result = subprocess.Popen(['php', 'C://Users//DELL//Desktop//jupyter-tbp//livestationcall.php', train_no, date],
+    result = subprocess.Popen(['php', 'findmytrain//static//php-files//livestationcall.php', train_no, date],
                               stdout=subprocess.PIPE, universal_newlines=False, stderr=subprocess.STDOUT)
     # print("result : ", result.stdout)
     type(result.stdout)
@@ -154,7 +154,7 @@ def findtrainfaresresult(request):
     source = request.POST.get("sourcestation")
     destination = request.POST.get("destinationstation")
     result = subprocess.Popen(
-        ['php', 'C://Users//DELL//Desktop//jupyter-tbp//trainfarescall.php', train, source, destination],
+        ['php', 'findmytrain//static//php-files//trainfarescall.php', train, source, destination],
         stdout=subprocess.PIPE, universal_newlines=False, stderr=subprocess.STDOUT)
     print(result.stdout)
     for line in result.stdout:
