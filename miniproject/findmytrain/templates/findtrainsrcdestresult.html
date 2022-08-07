@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %} <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Find Train</title>
+    <style>
+        .panel-container{
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: #ccc 2px 5px 10px 3px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        {% load static %} <img src="{% static 'images/fmticon.png' %}" alt="logo" class="logo" />
+        <div>
+            <ul class="navbar-items">
+                <li><a href="{% url 'index'%}">Home</a></li>
+                <li><a href="{% url 'pnrstatus'%}">PNR Status</a></li>
+                <li><a href="{% url 'findtrainbyname'%}">Find Train</a></li>
+                <li><a href="{% url 'livestation'%}">Live Location</a></li>
+            </ul>
+        </div>
+        <a href="{% url 'home'%}" class="cta"><button>Queries</button></a>
+    </div>
+    <div class="box-container">
+        <div class="traincontainer">
+            <h3 style="">Trains Between Stations</h3>
+            <form action="{% url 'findtrainsrcdestresult' %}" method="POST" style="display:flex;">
+                {% csrf_token %}
+<!--                <div class="train-user-box">-->
+<!--                    <input type="search" name="trainName" required="" placeholder="Enter Train Name or Number" class="TrainNo">-->
+<!--                </div>-->
+                <div class="user-box">
+                    <label>Source</label>
+                    <input type="search" placeholder="Enter Source Station" aria-label="Search" name="sourcestation" class="TrainName">
+                </div>
+                <div class="user-box" style="margin-left: 10px;">
+                    <label>Destination</label>
+                    <input type="search" placeholder="Enter Destination Station" aria-label="Search" name="destinationstation" class="TrainName">
+                </div>
+                <div class="train-btncont" style="text-align: center; margin: auto; margin-bottom:0;">
+                    <button type="submit" class="trainsearchbtn">Search</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        {% if res|length == 0 %}
+                <div class="noresultcontainer">
+                    <h3>No data found for given train details</h3>
+                </div>
+        {% else %}
+            <div class="resultcontainer">
+                <div class="trainDetails">
+                    {% for s in res %}
+                    <div class="panel-container">
+                        <p style="font-size: 20px; font-weight:600; margin: 0; padding: 10px;">{{s.train_no}} - {{s.train_name}}</p>
+                        <div style="display: grid; grid-template-columns: repeat(4,1fr); column-gap: 5px; padding: 10px;">
+                            <p style="font-size: 17px; margin: 0; padding-left: 10px;">{{s.source_name}} to {{s.destination_name}}</p>
+                            <p style="font-size: 17px; margin: 0;">Departure : {{s.departure_time}}</p>
+                            <p style="font-size: 17px; margin: 0;">Arrival : {{s.arrival_time}}</p>
+                            <p style="font-size: 17px; margin: 0;">Journey Time : {{s.travel_time}} hrs</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

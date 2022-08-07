@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %} <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Chat Bot</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poiret+One&family=Sora&family=Syne&display=swap");
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins',sans-serif;
+        }
+        body{
+            background-color:#fff;
+        }
+
+        .bot-container{
+            width: 100%;
+            height: 100vh;
+<!--            background-image: linear-gradient(to right,#2a12e6,#615ca7);-->
+            background-color: #0d1321;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            padding: 0px 20px;
+        }
+
+        .coln-1 h1{
+            text-align: center;
+            padding: 15px;
+        }
+
+        .chatbot-about-desc{
+            text-align: left;
+            padding: 10px 30px;
+        }
+
+        .chatbox-desc{
+            background: rgba(13,19,33);
+            box-shadow: 2px 3px 5px 2px #33405e;
+            border: 1px solid #33405e;
+            width: 50%;
+            min-width: 250px;
+            display: flex;
+            margin-right:20px;
+            height: 80vh;
+        }
+
+        .bot-desc{
+            text-align: center;
+        }
+
+        .chat-features li{
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        .chatbot-parent{
+            background: #0d1321;
+            width: 50%;
+            min-width: 250px;
+            height: 80vh;
+        }
+        .chatbox{
+            height: 71vh;
+            overflow-y: scroll;
+            background: rgba(13,19,33,0.3);
+            box-shadow: 2px 0px 5px 2px #33405e;
+            border: 1px solid #33405e;
+        }
+        .chatbox::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .chatbox {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .coln-1{
+            flex: 1;
+        }
+        .msg-row{
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+        .msg-text{
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            /* flex-basis: 70%; */
+            font-weight:300;
+
+        }
+        .msg-text h2{
+            font-weight: 400;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .msg-text p{
+            margin-bottom:0;
+        }
+        .msg-img{
+            width: 50px;
+            border-radius: 50%;
+            margin: 0 20px;
+        }
+        .msg-row2{
+            justify-content: flex-end;
+        }
+        .msg-row2 div h2{
+            text-align: right;
+            justify-content: flex-end;
+        }
+        .user-message{
+            outline: none;
+            padding: 17px 20px;
+            color: #fff;
+            background: rgba(13,19,33,0.3);
+            box-shadow: 0px 3px 5px 2px #33405e;
+            border: 1px solid #33405e;
+            width: 80%;
+            font-size: 16px;
+            font-weight: 300;
+<!--            border: 0;-->
+        }
+
+        ::placeholder{
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+            {% load static %} <img src="{% static 'images/fmticon.png' %}" alt="logo" class="logo" />        <div>
+            <ul class="navbar-items">
+                <li><a href="{% url 'index'%}">Home</a></li>
+                <li><a href="{% url 'pnrstatus'%}">PNR Status</a></li>
+                <li><a href="{% url 'findtrainbyname'%}">Find Train</a></li>
+                <li><a href="{% url 'livestation'%}">Live Location</a></li>
+            </ul>
+        </div>
+        <a href="{% url 'home'%}" class="cta"><button>Queries</button></a>
+    </div>
+
+    <div class="bot-container">
+        <div class="chatbox-desc">
+            <div class="coln-1 bot-desc">
+                <h1>Chat with Chatbot</h1>
+                {% load static %} <img src="{% static 'images/boticon.jpg' %}" alt="" width="100px" class="desc-icon" />
+                <div class="chatbot-about-desc">
+                    <p style="font-size: 18px; padding-top: 20px;">What can it do :</p>
+                    <ul class="chat-features">
+                        <li>Find a Train</li>
+                        <li>Find trains between source and destination</li>
+                        <li>Find Train Fares</li>
+                        <li>Find Railway Station</li>
+                        <li>Find Nearest Railway Stations</li>
+                        <li>PNR Status</li>
+                        <li>Live Station of a Train</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-parent">
+            <div class="chatbox">
+                <div class="coln-1" id="add-reply">
+                    <div class="msg-row">
+<!--                        {% load static %} <img src="{% static 'images/boticon.jpg' %}" alt="" class="msg-img" />-->
+                        <div class="msg-text">
+                            <h2>Bot</h2>
+                            <p>Hello, how can I help you!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form style="display:flex;" id="post-form">
+                {% csrf_token %}
+                <input type="text" placeholder="Type your message here..." class="user-message" id="personmessage" name="usermessage"  style="margin-right:5px;">
+                <input type="submit" id="message" value="Send" style="padding:12px 10px; width:19%; background: rgba(13,19,33,0.6); border:none;
+                            box-shadow: 2px 3px 5px 2px #33405e; color:#fff;">
+            </form>
+
+        </div>
+    </div>
+    <footer>
+        <div class="footerdesc">
+            {% load static %} <img src="{% static 'images/college-logo.png' %}" alt=""/>
+            <p>This project is done for educational purpose by <br>Students of Vasavi College of Engineering, Hyderabad.</p>
+        </div>
+        <div></div>
+        <div>
+            <ul class="student-details">
+                <li>
+                    <p>Santosh Kumar</p>
+                    <p>1602-19-737-164</p>
+                </li>
+                <li>
+                    <p>Nikitha Maramraju</p>
+                    <p>1602-19-737-145</p>
+                </li>
+                <li>
+                    <p>Bheeshma</p>
+                    <p>1602-19-737-128</p>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script type="text/javascript">
+
+<!--        var objectDiv = document.getElementById("chatboxid");-->
+<!--        objectDiv.scrollTop = objectDiv.scrollHeight;-->
+
+        $(document).on('submit','#post-form',function(e){
+
+            var msge = document.getElementById('personmessage').value;
+            const par = document.createElement('div');
+            const elem = document.createElement('div');
+            const elem1 = document.createElement('h2');
+            const elemText = document.createTextNode('You');
+            elem1.appendChild(elemText);
+            const elem2 = document.createElement('p');
+            const elemText2 = document.createTextNode(msge);
+            elem2.appendChild(elemText2);
+            elem.appendChild(elem1);
+            elem.appendChild(elem2);
+            par.appendChild(elem);
+            par.classList.add('msg-row');
+            par.classList.add('msg-row2');
+            elem.classList.add('msg-text');
+            document.getElementById("add-reply").appendChild(par);
+
+            e.preventDefault();
+            $.ajax({
+                type:'POST',
+                url:'/send',
+                data:{
+                    text: $('#personmessage').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function ReplyBack(response){
+                            const par = document.createElement('div');
+                            const elem = document.createElement('div');
+                            const elem1 = document.createElement('h2');
+                            const elemText = document.createTextNode('Bot');
+                            elem1.appendChild(elemText);
+                            const elem2 = document.createElement('p');
+                            const elemText2 = document.createTextNode(response);
+                            elem2.appendChild(elemText2);
+                            elem.appendChild(elem1);
+                            elem.appendChild(elem2);
+                            par.appendChild(elem);
+                            par.classList.add('msg-row');
+                            elem.classList.add('msg-text');
+                            document.getElementById("add-reply").appendChild(par);
+                }
+            });
+            document.getElementById("personmessage").value = ''
+        });
+    </script>
+</body>
+</html>

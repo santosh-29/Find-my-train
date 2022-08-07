@@ -1,0 +1,428 @@
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&family=Sora&family=Syne&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  word-spacing: 2px;
+}
+
+/* ---------------- NAVBAR ---------------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px 15px 20px;
+  background-color: #0d1321;
+}
+.navbar-items {
+  margin-bottom: 0rem;
+}
+.navbar-items li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+.navbar-items li a {
+  transition: all 0.5s ease 0s;
+  font-size: 18px;
+  color: #ecf0f1;
+  text-decoration: none;
+}
+.cta button,
+.book-tickets-button button {
+  font-size: 16px;
+  color: #ecf0f1;
+  text-decoration: none;
+}
+.navbar-items li a:hover {
+  background-color: rgba(0, 136, 169, 0.7);
+  padding: 10px 15px;
+  border-radius: 60px;
+  color: #fff;
+}
+.cta button,
+.book-tickets-button button {
+  padding: 9px 25px;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.cta button:hover,
+.book-tickets-button button:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}
+
+/* ---------------- HOME PAGE CONTAINER ---------------- */
+.box-container {
+  width: 90%;
+  margin: auto;
+}
+/* ---------------- FOOTER ---------------- */
+footer{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  background-color: #0d1321;
+  margin-top: 20px;
+  padding: 40px 40px 20px 40px;
+  color: #fff;
+  /* text-align: center; */
+}
+.footerdesc{
+  text-align: center;
+}
+footer div img{
+  width: 100px;
+  padding-bottom: 10px;
+}
+.student-details li{
+  /* list-style: none; */
+  line-height: 1rem;
+}
+/* ---------------- BOOK TICKETS SECTION ---------------- */
+
+.book-tkts-sec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bk-tkts-imgsec {
+  width: 40%;
+}
+.bk-tkts-imgsec img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.mainframe-info {
+  width: 60%;
+  padding: 10px 40px 10px 40px;
+}
+.mainframe-info h3 {
+  padding: 15px 0px;
+}
+
+/* ---------------- BOT BUTTON SECTION ---------------- */
+
+.click-for-bot:hover{
+    background-color: rgba(0, 136, 169, 0.5);
+    /*box-shadow: 3px 3px 15px #0d1321;*/
+}
+
+
+/* ---------------- FEATURES SECTION ---------------- */
+.features-sec h2 {
+  text-align: center;
+  padding: 2px 0px;
+  /* margin: auto 30px; */
+  /* background-color: #e0e0e0; */
+}
+.features-list {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  justify-content: center;
+}
+.feature-item {
+  flex-basis: 30%;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+.feature-box {
+  display: block;
+  min-width: 250px;
+  min-height: 250px;
+  width: 70%;
+  height: 70%;
+  text-align: center;
+  margin: auto;
+  /* background-color: #ccd2d3; */
+  border: 2px solid #ccc;
+  border-radius: 10%;
+  padding: 15px;
+}
+.feature-box:hover {
+  box-shadow: 3px 3px 15px #0d1321;
+}
+.feature-box a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+.feature-box a:hover {
+  color: rgb(0, 136, 169);
+}
+.feature-box img {
+  width: 70%;
+  height: 70%;
+}
+.feature-box p {
+  padding: 20px 20px;
+}
+
+/* ---------------- FIND TRAIN PAGE ---------------- */
+
+.ftcontainer {
+  width: 600px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -300px;
+  margin-top: -170px;
+  line-height: 2rem;
+  /* background-color: #a3a9aa; */
+  padding: 40px 60px;
+  border: #ccc solid 1px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #ccc;
+}
+.ftcontainer h1 {
+  padding: 0px 0px 20px 0px;
+  text-align: center;
+}
+.ftcontainer p {
+  text-align: center;
+}
+.ftcontainer label {
+  padding: 5px;
+}
+.user-box input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  /* background-color: #fff; */
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+}
+.user-box input:focus {
+  border: none;
+  box-shadow: 1px 3px 10px 1px grey;
+}
+.btncont{
+  padding: 40px 0px;
+  text-align: center;
+}
+.searchbtn{
+  width: 150px;
+  border: 1px solid #000;
+  background-color: #0d1321;
+  color: #fff;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}
+.searchbtn:hover, .pnrsearchbtn:hover{
+  box-shadow: 1px 3px 5px 1px grey;
+}
+
+.result{
+  text-align: center;
+  font-size: 24px;
+  padding: 20px 20px;
+}
+
+/* ---------------- PNR STATUS RESULT ---------------- */
+
+.pnrcontainer{
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  padding: 20px 20px;
+  align-items: center;
+  margin: 20px auto;
+  border: #ccc solid 1px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #ccc;
+}
+.pnrsearchbtn{
+  width: 80%;
+  float: left;
+  margin: auto;
+  border: 1px solid #000;
+  background-color: #0d1321;
+  color: #fff;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}
+.pnr-user-box input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+}
+.pnr-user-box input:focus {
+  border: none;
+  box-shadow: 1px 3px 10px 1px grey;
+}
+
+.pnrcontainer h3, .pnrcontainer .PNRNumber, .pnrcontainer .pnrsearchbtn{
+  margin: 0px 40px;
+}
+.pnr-btncont{
+  margin-left: 20px;
+}
+
+.trainDetails table{
+  margin: auto;
+  line-height: 30px;
+}
+
+.trainDetails table tbody tr th{
+  padding: 0px 50px;
+}
+
+/* ---------------- FIND TRAIN RESULT ---------------- */
+.traincontainer{
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  padding: 20px 20px;
+  align-items: center;
+  margin: 20px auto;
+  border: #ccc solid 1px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #ccc;
+}
+.trainsearchbtn{
+  width: 80%;
+  float: left;
+  margin: auto;
+  border: 1px solid #000;
+  background-color: #0d1321;
+  color: #fff;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}
+.train-user-box input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+}
+.train-user-box input:focus {
+  border: none;
+  box-shadow: 1px 3px 10px 1px grey;
+}
+
+.traincontainer h3, .traincontainer .TrainNo, .traincontainer .trainsearchbtn{
+  margin: 0px 40px;
+}
+.train-btncont{
+  margin-left: 20px;
+}
+.trainDetails table{
+  margin: auto;
+  line-height: 30px;
+}
+
+.trainDetails table tbody tr th{
+  padding: 0px 50px;
+}
+.daysactive{
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding: 30px 10px;
+}
+.daysactive p{
+  width: 50px;
+  padding: 5px 10px;
+  margin-right: 20px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: rgba(0, 136, 169, 0.7);
+}
+
+/* ---------------- FIND STATION RESULT ---------------- */
+.stationcontainer{
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  padding: 20px 20px;
+  align-items: center;
+  margin: 20px auto;
+  border: #ccc solid 1px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #ccc;
+}
+.stationsearchbtn{
+  width: 80%;
+  float: left;
+  margin: auto;
+  border: 1px solid #000;
+  background-color: #0d1321;
+  color: #fff;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}
+.station-user-box input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+}
+.station-user-box input:focus {
+  border: none;
+  box-shadow: 1px 3px 10px 1px grey;
+}
+
+.stationcontainer h3, .stationcontainer .stationsearchbtn{
+  margin: 0px 40px;
+}
+.station-btncont{
+  margin-left: 20px;
+}
+.stationDetails table{
+  margin: auto;
+  line-height: 30px;
+}
+
+.trainDetails table tbody tr th{
+  padding: 0px 50px;
+}
+
+.noresultcontainer{
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 300px;
+  padding: 40px 60px;
+  border: #ccc solid 1px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #ccc;
+  text-align: center;
+  margin: auto;
+}
+
+/* ---------------- LIVE STATUS ---------------- */
+
+.curr-container{
+    width: 60%;
+    margin: 15px auto;
+    background-color: rgb(228, 228, 228);
+    padding: 20px;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 5px;
+    box-shadow: 2px 2px 9px 3px rgba(211, 211, 211,0.7);
+}
+.station-container{
+    background-color: rgb(255, 255, 255);
+    color: rgb(133, 133, 133);
+}
+.station-container:hover{
+    background-color: rgb(248, 248, 248);
+}

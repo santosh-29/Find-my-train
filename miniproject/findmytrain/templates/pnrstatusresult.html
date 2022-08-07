@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %} <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Find Train</title>
+</head>
+<body>
+    <div class="header">
+        {% load static %} <img src="{% static 'images/fmticon.png' %}" alt="logo" class="logo" />
+        <div>
+            <ul class="navbar-items">
+                <li><a href="{% url 'index'%}">Home</a></li>
+                <li><a href="{% url 'pnrstatus'%}">PNR Status</a></li>
+                <li><a href="{% url 'findtrainbyname'%}">Find Train</a></li>
+                <li><a href="{% url 'livestation'%}">Live Location</a></li>
+            </ul>
+        </div>
+        <a href="{% url 'home'%}" class="cta"><button>Queries</button></a>
+    </div>
+    <div class="box-container">
+        <div class="pnrcontainer">
+            <h3>PNR Number</h3>
+
+            <form action="{% url 'pnrstatusresult' %}" method="POST" style="display:flex;">
+                {% csrf_token %}
+                <div class="pnr-user-box">
+                    <input type="text" name="PNRStatus" required="" placeholder="Enter PNR Number" class="PNRNumber">
+                </div>
+                <div class="pnr-btncont">
+                    <button type="submit" class="pnrsearchbtn">Search</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        {% if res.error == "No data found for given PNR." %}
+                <div class="noresultcontainer">
+                    <h3>No data found for given PNR</h3>
+                </div>
+        {% else %}
+            <div class="resultcontainer">
+                <div class="trainDetails">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>PNR Number</th>
+                                <td>{{res.pnr}}</td>
+                            </tr>
+                            <tr>
+                                <th>Train Number</th>
+                                <td>{{res.journeyDetails.trainNumber}}</td>
+                            </tr>
+                            <tr>
+                                <th>Train Name</th>
+                                <td>{{res.journeyDetails.trainName}}</td>
+                            </tr>
+                            <tr>
+                                <th>From</th>
+                                <td>{{res.journeyDetails.from}}</td>
+                            </tr>
+                            <tr>
+                                <th>To</th>
+                                <td>{{res.journeyDetails.to}}</td>
+                            </tr>
+                            <tr>
+                                <th>Boarding Date</th>
+                                <td>{{res.journeyDetails.boardingDate}}</td>
+                            </tr>
+                            <tr>
+                                <th>Class</th>
+                                <td>{{res.journeyDetails.class}}</td>
+                            </tr>
+                            <tr>
+                                <th>Chart Status</th>
+                                <td>{{res.chartingStatus}}</td>
+                            </tr>
+                            <tr>
+                                <th>Last Updated</th>
+                                <td>{{res.lastUpdated}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr><br>
+            <div class="passengerDetails">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Passenger Number</th>
+                        <th scope="col">Booking Status</th>
+                        <th scope="col">Current Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for s in res.bookingStatus %}
+                        <tr>
+                            <th scope="row">{{s.passengerNo}}</th>
+                            <td>{{ s.bookingStatus }}</td>
+                            <td>{{ s.currentStatus }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
